@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import OrderPage from "./pages/orderPage";
+import LoginPage from "./pages/loginPage";
+import PrivateRoute from "./routes/privateRoute";
 
+// Router ini untuk membuat halaman yang kita buat SPA (single page application) dimana bisa berpindah2 directory tanpad me load halaman
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <PrivateRoute path="/" exact>
+          <OrderPage />
+        </PrivateRoute>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
