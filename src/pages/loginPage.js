@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
+//Post Data ke server API berhasil, namun sekarang tinggal, apabila benar maka harus ke halaman orderpage
+
 function LoginPage() {
   // Local State => menyimpan data input user
   const [username, setUsername] = useState("");
