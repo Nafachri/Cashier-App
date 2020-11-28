@@ -18,6 +18,7 @@ function TotalItemPrice(/*{ orderItems }*/) {
 
     // Melakukan looping dengan data store yang kita punya
     store.map((item) => {
+      console.log("Check");
       const sumPriceItem = item.price * item.quantity; // Lalu price dan quantity di kali dan di simpan dalam variabel sumPriceItem
       setTotalSum(totalSum + sumPriceItem); // State yang kita buat tadi dengan nilai awal 0, di tambah dengan sumPriceTotal, jadi setiap ada hasil baru akan menjumlah hasil lama
     });

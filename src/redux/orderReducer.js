@@ -5,7 +5,7 @@ const orderReducer = (state = initialState, action) => {
     case "ADD_ITEM":
       return [...state, action.payload];
     case "REMOVE_ITEM":
-      return state.filter((item) => item === action.payload);
+      return state.filter((item) => item.product !== action.payload);
     default:
       return state;
   }

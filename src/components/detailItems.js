@@ -10,7 +10,7 @@ function DetailItem({ product, price, quantity }) {
   function handleButtonDelete() {
     dispatch({
       type: "REMOVE_ITEM",
-      payload: "remove item",
+      payload: product,
     });
   }
   return (

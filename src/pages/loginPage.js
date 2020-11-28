@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import loginAction from "../redux/actions/loginAction";
 
 // Post Data ke server API berhasil, namun sekarang tinggal, apabila benar maka harus ke halaman orderpage
 
@@ -31,31 +32,32 @@ function LoginPage() {
   }
 
   // Membuat action creator untuk post data ke API (cara diluar redux)
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     localStorage.setItem("userStatus", true);
     e.preventDefault();
-    try {
-      const userData = await axios({
-        url: "http://creative-crimson.eddypermana.com/kasir-app/login",
-        method: "POST",
-        data: {
-          username: username,
-          password: password,
-        },
-      });
-      console.log(userData);
-      dispatch({
-        type: "USER_LOGIN_STATUS",
-        payload: {
-          loginStatus: userData.data,
-          //   username: userData.data.username,
-          //   password: userData.data.password,
-          // },
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(loginAction(username, password));
+    // try {
+    //   const userData = await axios({
+    //     url: "http://creative-crimson.eddypermana.com/kasir-app/login",
+    //     method: "POST",
+    //     data: {
+    //       username: username,
+    //       password: password,
+    //     },
+    //   });
+    //   console.log(userData);
+    //   dispatch({
+    //     type: "USER_LOGIN_STATUS",
+    //     payload: {
+    //       loginStatus: userData.data,
+    //       //   username: userData.data.username,
+    //       //   password: userData.data.password,
+    //       // },
+    //     },
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
     setUsername("");
     setPassword("");
   };
