@@ -1,13 +1,20 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-//Post Data ke server API berhasil, namun sekarang tinggal, apabila benar maka harus ke halaman orderpage
+// Post Data ke server API berhasil, namun sekarang tinggal, apabila benar maka harus ke halaman orderpage
 
 function LoginPage() {
   // Local State => menyimpan data input user
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  //useSelector
+  const loginStatus = useSelector((state) => state.login.isLogin);
+
+  //useHistory
+  const history = useHistory();
 
   //useDispatch
   const dispatch = useDispatch();
@@ -25,6 +32,7 @@ function LoginPage() {
 
   // Membuat action creator untuk post data ke API (cara diluar redux)
   const handleSubmit = async (e) => {
+    localStorage.setItem("userStatus", true);
     e.preventDefault();
     try {
       const userData = await axios({
@@ -39,8 +47,10 @@ function LoginPage() {
       dispatch({
         type: "USER_LOGIN_STATUS",
         payload: {
-          username: userData.data.username,
-          password: userData.data.password,
+          loginStatus: userData.data,
+          //   username: userData.data.username,
+          //   password: userData.data.password,
+          // },
         },
       });
     } catch (error) {
@@ -49,6 +59,12 @@ function LoginPage() {
     setUsername("");
     setPassword("");
   };
+
+  useEffect(() => {
+    if (loginStatus) {
+      history.push("/");
+    }
+  }, [loginStatus]);
 
   return (
     <div>

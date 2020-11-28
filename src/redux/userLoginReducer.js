@@ -1,7 +1,7 @@
 const initialState = {
   isLogin: false,
-  username: "kasirku",
-  password: "operator001",
+  // username: "kasirku",
+  // password: "operator001",
 };
 
 const userLoginReducer = (state = initialState, action) => {
@@ -9,8 +9,8 @@ const userLoginReducer = (state = initialState, action) => {
     case "USER_LOGIN_STATUS":
       return {
         isLogin: action.payload.loginStatus,
-        username: action.payload.username,
-        password: action.payload.username,
+        // username: action.payload.username,
+        // password: action.payload.password,
       };
     default:
       return state;

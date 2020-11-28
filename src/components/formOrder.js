@@ -61,28 +61,48 @@ function FormOrder({ handleAddItem }) {
     setPrice("");
     setQuantity("");
   }
+
+  // Handle Button Logout
+  function handleButtonLogout() {
+    localStorage.removeItem("userStatus");
+    dispatch({
+      type: "USER_LOGIN_STATUS",
+      payload: {
+        loginStatus: false,
+      },
+    });
+  }
   return (
-    <div>
-      <input
-        onChange={handleProductInput}
-        type="text"
-        value={product}
-        placeholder="Product"
-      ></input>
-      <input
-        onChange={handlePriceInput}
-        type="number"
-        value={price}
-        placeholder="Price"
-      ></input>
-      <input
-        onChange={handleQuantityInput}
-        type="number"
-        value={quantity}
-        placeholder="Quantity"
-      ></input>
-      <input onClick={handleSubmitButton} type="submit" value="Submit"></input>
-    </div>
+    <>
+      <form>
+        <input
+          onChange={handleProductInput}
+          type="text"
+          value={product}
+          placeholder="Product"
+        ></input>
+        <input
+          onChange={handlePriceInput}
+          type="number"
+          value={price}
+          placeholder="Price"
+        ></input>
+        <input
+          onChange={handleQuantityInput}
+          type="number"
+          value={quantity}
+          placeholder="Quantity"
+        ></input>
+        <input
+          onClick={handleSubmitButton}
+          type="submit"
+          value="Submit"
+        ></input>
+      </form>
+      <div>
+        <button onClick={handleButtonLogout}>Logout</button>
+      </div>
+    </>
   );
 }
 

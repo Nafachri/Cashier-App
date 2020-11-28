@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import DetailItem from "./detailItems";
 
 function TotalItemPrice(/*{ orderItems }*/) {
   // Membuat initial state 0 , agar datanya bisa di hitung karena Number
